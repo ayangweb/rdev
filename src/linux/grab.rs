@@ -392,3 +392,20 @@ pub fn exit_grab_listen() {
     }
     send_grab_control(GrabControl::Exit);
 }
+
+pub fn grab<T>(callback: T) -> Result<(), GrabError>
+where
+    T: FnMut(Event) -> Option<Event> + 'static,
+{
+    start_grab_listen(callback)?;
+    enable_grab();
+
+    Ok(())
+}
+
+pub fn exit_grab() -> Result<(), GrabError> {
+    disable_grab();
+    exit_grab_listen();
+
+    Ok(())
+}

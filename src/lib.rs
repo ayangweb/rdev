@@ -238,6 +238,9 @@ pub use crate::codes_conv::*;
 pub use keycodes::android::{
     code_from_key as android_keycode_from_key, key_from_code as android_key_from_code,
 };
+pub use keycodes::chrome::{
+    code_from_key as chrome_keycode_from_key, key_from_code as chrome_key_from_code,
+};
 pub use keycodes::linux::{
     code_from_key as linux_keycode_from_key, key_from_code as linux_key_from_code,
 };
@@ -251,9 +254,6 @@ pub use keycodes::windows::{
     code_from_key as win_code_from_key, code_from_key as win_keycode_from_key, get_win_codes,
     get_win_key, key_from_code as win_key_from_keycode, key_from_scancode as win_key_from_scancode,
     scancode_from_key as win_scancode_from_key,
-};
-pub use keycodes::chrome::{
-    code_from_key as chrome_keycode_from_key, key_from_code as chrome_key_from_code,
 };
 
 #[cfg(target_os = "macos")]
@@ -365,7 +365,7 @@ pub fn display_size() -> Result<(u64, u64), DisplayError> {
 
 #[cfg(target_os = "linux")]
 pub use crate::linux::{
-    disable_grab, enable_grab, exit_grab_listen, is_grabbed, start_grab_listen,
+    disable_grab, enable_grab, exit_grab, exit_grab_listen, grab, is_grabbed, start_grab_listen,
 };
 #[cfg(target_os = "macos")]
 pub use crate::macos::set_keyboard_extra_info;
